@@ -2,11 +2,11 @@ from io import BytesIO
 
 import serial
 
-import streamer.streamer
 from openmv import image_reader
+from stream_handler import StreamHandler
 
 
-class OpenMVStreamHandler(streamer.streamer.StreamHandler):
+class OpenMVStreamHandler(StreamHandler):
     def __init__(self, application, request):
         # Connects to the OpenMV camera via serial.
         try:

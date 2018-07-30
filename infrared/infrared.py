@@ -1,10 +1,10 @@
 import time
 from io import BytesIO
 
-import streamer.streamer
+from stream_handler import StreamHandler
 
 
-class InfraredStreamHandler(streamer.streamer.StreamHandler):
+class InfraredStreamHandler(StreamHandler):
     def __init__(self, application, request):
         try:
             from picamera import PiCamera
@@ -14,8 +14,9 @@ class InfraredStreamHandler(streamer.streamer.StreamHandler):
             self.camera.start_preview()
             # Allow time for the camera to warm up.
             time.sleep(2)
-        except Exception:
+        except Exception as e:
             print("Could not connect to the infrared camera.")
+            print(e)
         super(InfraredStreamHandler, self).__init__(application, request)
 
     def get_frame(self):

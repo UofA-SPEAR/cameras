@@ -3,15 +3,16 @@ from io import BytesIO
 import cv2
 from PIL import Image
 
-import streamer.streamer
+from stream_handler import StreamHandler
 
 
-class WebcamStreamHandler(streamer.streamer.StreamHandler):
+class WebcamStreamHandler(StreamHandler):
     def __init__(self, application, request):
         try:
             self.camera = cv2.VideoCapture(0)
-        except Exception:
+        except Exception as e:
             print("Could not connect to the webcam.")
+            print(e)
         super(WebcamStreamHandler, self).__init__(application, request)
 
     def get_frame(self):

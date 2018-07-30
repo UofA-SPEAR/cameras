@@ -7,6 +7,7 @@ IMAGE_START = "image_starts_here\n".encode("utf-8")
 IMAGE_END = "image_ends_here\n".encode("utf-8")
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+
 def get_frame(ser):
     # Waits until the image start signal has been received.
     line = bytes()
