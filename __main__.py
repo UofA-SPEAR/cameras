@@ -3,10 +3,6 @@ import sys
 import tornado.ioloop
 import tornado.web
 
-from infrared.infrared import InfraredStreamHandler
-from openmv.openmv import OpenMVStreamHandler
-from webcam.webcam import WebcamStreamHandler
-
 
 def main():
     if len(sys.argv) != 2:
@@ -14,10 +10,13 @@ def main():
 
     device = sys.argv[1]
     if device == "rpi":
+        from infrared.infrared import InfraredStreamHandler
         app = tornado.web.Application([
             (r"/stream/infrared", InfraredStreamHandler)
         ])
     elif device == "tx2":
+        from openmv.openmv import OpenMVStreamHandler
+        from webcam.webcam import WebcamStreamHandler
         app = tornado.web.Application([
             (r"/stream/openmv", OpenMVStreamHandler),
             (r"/stream/webcam", WebcamStreamHandler),
