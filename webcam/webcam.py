@@ -13,7 +13,7 @@ class WebcamStreamHandler(StreamHandler):
         except Exception as e:
             print("Could not connect to the webcam.")
             print(e)
-        super(WebcamStreamHandler, self).__init__(application, request)
+        super().__init__(application, request)
 
     def get_frame(self):
         _, img = self.camera.read()

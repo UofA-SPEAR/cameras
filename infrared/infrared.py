@@ -11,13 +11,12 @@ class InfraredStreamHandler(StreamHandler):
             self.camera = PiCamera()
             self.camera.resolution = (640, 480)
             self.camera.framerate = 80
-            self.camera.start_preview()
             # Allow time for the camera to warm up.
             time.sleep(2)
         except Exception as e:
             print("Could not connect to the infrared camera.")
             print(e)
-        super(InfraredStreamHandler, self).__init__(application, request)
+        super().__init__(application, request)
 
     def get_frame(self):
         stream = BytesIO()

@@ -13,7 +13,7 @@ class OpenMVStreamHandler(StreamHandler):
             self.camera = serial.Serial("COM11", baudrate=115200, timeout=None)
         except Exception:
             print("Could not connect to the OpenMV camera.")
-        super(OpenMVStreamHandler, self).__init__(application, request)
+        super().__init__(application, request)
 
     def get_frame(self):
         # Gets the image from the OpenMV camera.
