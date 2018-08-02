@@ -29,7 +29,7 @@ def main():
         sys.stderr.write("Invalid argument. Please choose either rpi or tx2.")
         sys.exit(1)
 
-    app.listen(8888)
+    app.listen(8080)
     tornado.ioloop.IOLoop.current().start()
 
 
