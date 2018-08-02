@@ -10,7 +10,7 @@ class OpenMVStreamHandler(StreamHandler):
     def __init__(self, application, request):
         # Connects to the OpenMV camera via serial.
         try:
-            self.camera = serial.Serial("COM11", baudrate=115200, timeout=None)
+            self.camera = serial.Serial("/dev/ttyACM0", baudrate=115200, timeout=None)
         except Exception:
             print("Could not connect to the OpenMV camera.")
         super().__init__(application, request)
