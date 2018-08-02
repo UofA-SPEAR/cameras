@@ -5,8 +5,12 @@ import tornado.web
 
 
 def main():
-    if len(sys.argv) != 2:
-        raise ValueError("Please specify the device as a command line argument. Options are rpi and tx2.")
+    if len(sys.argv) < 2:
+        sys.stderr.write("Not enough arguments supplied.")
+        sys.exit(1)
+    elif len(sys.argv) > 2:
+        sys.stderr.write("Too many arguments supplied.")
+        sys.exit(1)
 
     device = sys.argv[1]
     if device == "rpi":
@@ -22,7 +26,8 @@ def main():
             (r"/stream/webcam", WebcamStreamHandler),
         ])
     else:
-        raise ValueError("Second argument must be either rpi or tx2.")
+        sys.stderr.write("Invalid argument. Please choose either rpi or tx2.")
+        sys.exit(1)
 
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
