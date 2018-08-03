@@ -22,8 +22,8 @@ class WebcamStreamHandler(StreamHandler):
     try:
         pygame.camera.init()
         cameras = pygame.camera.list_cameras()
-        self.camera = pygame.camera.Camera(cameras[0], IMAGE_SIZE)
-        self.camera.start()
+        camera = pygame.camera.Camera(cameras[1], IMAGE_SIZE) # this number can change
+        camera.start()
     except Exception as e:
         print("Could not connect to the webcam.")
         print(e)

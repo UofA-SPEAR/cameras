@@ -7,8 +7,8 @@ from stream_handler import StreamHandler
 class InfraredStreamHandler(StreamHandler):
     try:
         from picamera import PiCamera
-        self.camera = PiCamera()
-        self.camera.resolution = (640, 480)
+        camera = PiCamera()
+        camera.resolution = (640, 480)
         # Allow time for the camera to warm up.
         time.sleep(2)
     except Exception as e:
