@@ -6,10 +6,10 @@ import tornado.web
 
 def main():
     if len(sys.argv) < 2:
-        sys.stderr.write("Not enough arguments supplied.")
+        print("Not enough arguments supplied.", file=sys.stderr)
         sys.exit(1)
     elif len(sys.argv) > 2:
-        sys.stderr.write("Too many arguments supplied.")
+        print("Too many arguments supplied.", file=sys.stderr)
         sys.exit(1)
 
     device = sys.argv[1]
@@ -26,7 +26,7 @@ def main():
             (r"/stream/webcam", WebcamStreamHandler),
         ])
     else:
-        sys.stderr.write("Invalid argument. Please choose either rpi or tx2.")
+        print("Invalid argument. Please choose either rpi or tx2.", file=sys.stderr)
         sys.exit(1)
 
     app.listen(8080)
