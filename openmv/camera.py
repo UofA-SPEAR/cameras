@@ -6,7 +6,9 @@ sensor.set_pixformat(sensor.RGB565)  # Sets pixel format to RGB565.
 sensor.set_framesize(sensor.QVGA)  # Sets frame size to QVGA (320x240).
 sensor.skip_frames(time=2000)  # Waits for settings take effect.
 
+# Activate the green LED to show the device is running.
 green_led = pyb.LED(2)
+green_led.on()
 
 # Creates the USB connection.
 usb = pyb.USB_VCP()
@@ -14,8 +16,7 @@ usb = pyb.USB_VCP()
 # Signals to mark the start and end of an image.
 IMAGE_START = "image_starts_here\n"
 IMAGE_END = "image_ends_here\n"
-while (True):
-    green_led.toggle()
+while True:
     img = sensor.snapshot()  # Takes a picture and returns the image.
     img = img.compressed(quality=35)  # Compresses the photo as a JPEG.
 
