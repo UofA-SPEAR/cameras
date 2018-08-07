@@ -15,8 +15,9 @@ class InfraredStreamHandler(StreamHandler):
         print("Could not connect to the infrared camera.")
         print(e)
 
-    def get_frame(self):
+    @classmethod
+    def get_frame(cls):
         stream = BytesIO()
-        self.camera.capture(stream, format="jpeg", quality=35)
+        cls.camera.capture(stream, format="jpeg", quality=35)
         frame = stream.getvalue()
         return frame

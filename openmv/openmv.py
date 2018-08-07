@@ -14,9 +14,10 @@ class OpenMVStreamHandler(StreamHandler):
         print("Could not connect to the OpenMV camera.")
         print(e)
 
-    def get_frame(self):
+    @classmethod
+    def get_frame(cls):
         # Gets the image from the OpenMV camera.
-        img = image_reader.get_frame(self.camera)
+        img = image_reader.get_frame(cls.camera)
         # Saves the image to a bytes buffer.
         buffer = BytesIO()
         img.save(buffer, format="JPEG")
