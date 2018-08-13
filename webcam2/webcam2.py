@@ -33,7 +33,7 @@ class Webcam2StreamHandler(StreamHandler):
     def get_frame(cls):
         img = cls.camera.get_image()
         img = pygame.image.tostring(img, "RGB", False)
-        img = Image.frombytes("RGB", IMAGE_SIZE, img)
+        img = Image.frombytes("RGB", IMAGE_SIZE, img).rotate(180)
         # Saves the image to a bytes buffer.
         buffer = BytesIO()
         img.save(buffer, format="JPEG")
