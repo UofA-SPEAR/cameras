@@ -24,11 +24,16 @@ def main():
     elif device == "tx2":
         from openmv.openmv import OpenMVStreamHandler
         from webcam.webcam import WebcamStreamHandler
+        from webcam2.webcam2 import Webcam2StreamHandler
         app = tornado.web.Application([
             (r"/stream/openmv", OpenMVStreamHandler),
-            (r"/stream/webcam", WebcamStreamHandler),
             (r"/image/openmv", ImageHandler),
-            (r"/image/webcam", ImageHandler)
+
+            (r"/stream/webcam", WebcamStreamHandler),
+            (r"/image/webcam", ImageHandler),
+
+            (r"/stream/webcam2", Webcam2StreamHandler),
+            (r"/image/webcam2", ImageHandler),
         ])
     else:
         print("Invalid argument. Please choose either rpi or tx2.", file=sys.stderr)

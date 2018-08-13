@@ -16,6 +16,9 @@ class ImageHandler(tornado.web.RequestHandler):
         elif camera_name == "webcam":
             from webcam.webcam import WebcamStreamHandler
             stream_handler = WebcamStreamHandler
+        elif camera_name == "webcam2":
+            from webcam2.webcam2 import Webcam2StreamHandler
+            stream_handler = Webcam2StreamHandler
         else:
             raise tornado.web.HTTPError(404)
 
