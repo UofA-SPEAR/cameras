@@ -20,12 +20,13 @@ class StreamHandler(tornado.web.RequestHandler):
             # Writes the boundary between frames.
             self.write("--boundarydonotcross\n")
             # Writes the necessary headers.
-            self.write("Content-type: image/jpeg\r\n")
-            self.write("Content-length: {}\r\n\r\n".format(len(frame)))
+            self.write("Content-Type: image/jpeg\r\n")
+            self.write("Content-Length: {}\r\n\r\n".format(len(frame)))
             # Writes the image.
             self.write(frame)
             # Yields until the written data has been flushed.
             yield tornado.gen.Task(self.flush)
 
-    def get_frame(self):
+    @classmethod
+    def get_frame(cls):
         raise NotImplementedError("Please override method get_frame.")

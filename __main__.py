@@ -3,6 +3,8 @@ import sys
 import tornado.ioloop
 import tornado.web
 
+from image_handler import ImageHandler
+
 
 def main():
     if len(sys.argv) < 2:
@@ -16,14 +18,22 @@ def main():
     if device == "rpi":
         from infrared.infrared import InfraredStreamHandler
         app = tornado.web.Application([
-            (r"/stream/infrared", InfraredStreamHandler)
+            (r"/stream/infrared", InfraredStreamHandler),
+            (r"/image/infrared", ImageHandler)
         ])
     elif device == "tx2":
         from openmv.openmv import OpenMVStreamHandler
         from webcam.webcam import WebcamStreamHandler
+        from webcam2.webcam2 import Webcam2StreamHandler
         app = tornado.web.Application([
             (r"/stream/openmv", OpenMVStreamHandler),
+            (r"/image/openmv", ImageHandler),
+
             (r"/stream/webcam", WebcamStreamHandler),
+            (r"/image/webcam", ImageHandler),
+
+            (r"/stream/webcam2", Webcam2StreamHandler),
+            (r"/image/webcam2", ImageHandler),
         ])
     else:
         print("Invalid argument. Please choose either rpi or tx2.", file=sys.stderr)
